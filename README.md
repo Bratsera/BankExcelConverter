@@ -17,7 +17,8 @@ The UI was made with the QT-Community-Edition
  4. With the export-button you can export the table as a new Excel-file in the desired destination
  
 
-#How to run
+# How to run
+
 You have to execute the main.py with your python program.
 In the program you can click on "Choose file" and select aour export file (you can find a demo file in the directory "TestExample"
 You can change the regex-expression in the TableConverter.py:
