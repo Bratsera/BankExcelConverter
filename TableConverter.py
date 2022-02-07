@@ -17,9 +17,13 @@ class TableConverter:
 
     def convertFile(self):
         transferDesc = self.table['Verwendungszweck']
-        for index, line in enumerate(transferDesc):
-            result = re.findall(self.__REGEX_INVOICE_ID, line)
-            if len(line) > 0:
+        try:
+            for index, line in enumerate(transferDesc):
+                # A check if line is not a number NaN
+                if line != line:
+                    continue
+                result = re.findall(self.__REGEX_INVOICE_ID, line)
+
                 match result:
                     case result if len(result) == 1:
                         transferDesc.at[index] = result[0]
@@ -41,8 +45,11 @@ class TableConverter:
                         print('match LieferID ' + str(index))
                         matches = ', '.join(deliveryId)
                         newDesc = 'Lieferschein: ' + matches
-                        transferDesc.at[index] = newDesc + '; Kd-Nr: ' + customer.group()[0:5] if customer else newDesc
+                        transferDesc.at[index] = newDesc + \
+                                                 '; Kd-Nr: ' + customer.group()[0:5] if customer else newDesc
                         self.filesImprovedCounter += 1
+        except Exception as e:
+            print(e)
         self.successRatio = round(self.filesConvCounter * 100 / self.fileRowCount, 2)
 
         return {'convertedFile': self.table,

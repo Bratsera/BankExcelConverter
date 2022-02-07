@@ -14,10 +14,8 @@ class FileBrowser:
         fileBrowser = QFileDialog()
         fileBrowser.setFileMode(QFileDialog.ExistingFile)
         try:
-            selectedFile = fileBrowser.getOpenFileName(fileBrowser, "Choose file")
-            # selectedFile = self.fileBrowser.getExistingDirectory(QFileDialog, 'Choose file', os.path.dirname(__file__),QFileDialog.)
-            # if selectedFile:
-            #    selectedFile = QDir.toNativeSeparators(selectedFile)
+            selectedFile = fileBrowser.getOpenFileName(fileBrowser, "Choose file", os.path.dirname(__file__), "Excel-file (*.xlsx *.xls)")
+
             return selectedFile
         except Exception as e:
             print(e)
