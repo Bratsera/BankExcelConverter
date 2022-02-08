@@ -21,11 +21,20 @@ class FileBrowser:
             print(e)
 
 
-    def saveFile(self):
-
+    def saveFile(self, type):
+#Todo Abbruch des Exports abfangen
         fileBrowser = QFileDialog()
+
+        match type:
+            case 'success':
+                filename = "Bankdatenkonvertierung_erfolgreich"
+            case 'check':
+                filename = "Bankdatenkonvertierung_zu_prüfen"
+            case 'ignore':
+                filename = "Bankdatenkonvertierung_fehlgeschlagen"
+
         rootPath = os.path.join(os.path.dirname(__file__), "Export", datetime.now().strftime(
-            "%d-%m-%Y_%H.%M") + "Bankdatenkonvertierung")
+            "%d-%m-%Y_%H.%M") + filename)
         a = fileBrowser.getSaveFileName(fileBrowser, 'Save file as', rootPath, "Excel-file (*.xlsx *.xls)")
         if a[0] != '':
             # Returns pathName with the '/' separators converted to separators that are appropriate for the underlying operating system.
@@ -36,7 +45,7 @@ class FileBrowser:
         return a
 
     @staticmethod
-    def exportFile(file):
+    def exportFile(file, type):
         # Error-alert-box
         error = QtWidgets.QMessageBox()
 
@@ -46,7 +55,7 @@ class FileBrowser:
                               "klicken Sie auf den Button 'Choose file' und wählen Sie eine Excel Datei aus.",
                               error.Ok)
         else:
-            fileToSave = FileBrowser.saveFile()
+            fileToSave = FileBrowser.saveFile(FileBrowser, type)
             try:
                 with ExcelWriter(fileToSave, date_format='dd.mm.yyyy', datetime_format='dd.mm.yyyy hh:mm:ss') as writer:
                     file.to_excel(writer)
