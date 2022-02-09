@@ -40,7 +40,7 @@
      <item row="0" column="0">
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -50,9 +50,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-2</y>
-           <width>1091</width>
-           <height>761</height>
+           <y>0</y>
+           <width>851</width>
+           <height>751</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -87,8 +87,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>1091</width>
-           <height>731</height>
+           <width>851</width>
+           <height>751</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -199,7 +199,7 @@
           <x>9</x>
           <y>19</y>
           <width>151</width>
-          <height>251</height>
+          <height>241</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout">
@@ -388,7 +388,7 @@
      <x>0</x>
      <y>0</y>
      <width>1032</width>
-     <height>17</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMen">

@@ -22,7 +22,7 @@ class FileBrowser:
 
 
     def saveFile(self, type):
-#Todo Abbruch des Exports abfangen
+        #Todo Abbruch des Exports abfangen
         fileBrowser = QFileDialog()
 
         match type:
@@ -36,13 +36,16 @@ class FileBrowser:
         rootPath = os.path.join(os.path.dirname(__file__), "Export", datetime.now().strftime(
             "%d-%m-%Y_%H.%M") + filename)
         a = fileBrowser.getSaveFileName(fileBrowser, 'Save file as', rootPath, "Excel-file (*.xlsx *.xls)")
-        if a[0] != '':
+        print(a)
+        if a[0] == '':
+            return None
+        else:
             # Returns pathName with the '/' separators converted to separators that are appropriate for the underlying operating system.
             # On Windows, toNativeSeparators("c:/winnt/system32") returns
             # "c:\winnt\system32".
 
             a = QDir.toNativeSeparators(a[0])
-        return a
+            return a
 
     @staticmethod
     def exportFile(file, type):
@@ -56,13 +59,14 @@ class FileBrowser:
                               error.Ok)
         else:
             fileToSave = FileBrowser.saveFile(FileBrowser, type)
-            try:
-                with ExcelWriter(fileToSave, date_format='dd.mm.yyyy', datetime_format='dd.mm.yyyy hh:mm:ss') as writer:
-                    file.to_excel(writer)
-            except PermissionError:
-                error.critical(error, "Fehler beim Speichern der Datei",
-                               "Die Datei kann nicht überschrieben werden. "
-                               "Sie ist möglicherweise schreibgeschützt oder aktuell geöffnet "
-                               "oder Sie verfügen nicht über die erforderliche Berechtigung.", error.Ok)
-                FileBrowser.exportFile(file)
+            if fileToSave is not None:
+                try:
+                    with ExcelWriter(fileToSave, date_format='dd.mm.yyyy', datetime_format='dd.mm.yyyy hh:mm:ss') as writer:
+                        file.to_excel(writer)
+                except PermissionError:
+                    error.critical(error, "Fehler beim Speichern der Datei",
+                                   "Die Datei kann nicht überschrieben werden. "
+                                   "Sie ist möglicherweise schreibgeschützt oder aktuell geöffnet "
+                                   "oder Sie verfügen nicht über die erforderliche Berechtigung.", error.Ok)
+                    FileBrowser.exportFile(file)
 
