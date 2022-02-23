@@ -40,7 +40,7 @@
      <item row="0" column="0">
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -169,6 +169,9 @@
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QPushButton" name="btnExportSuccessTable">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Export Converted-Table</string>
        </property>
@@ -176,6 +179,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnExportCheckTable">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Export To-Check-Table</string>
        </property>
@@ -183,6 +189,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnExportIgnoreTable">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Export Ignored-Table</string>
        </property>
@@ -198,7 +207,7 @@
          <rect>
           <x>9</x>
           <y>19</y>
-          <width>151</width>
+          <width>154</width>
           <height>241</height>
          </rect>
         </property>
@@ -381,6 +390,22 @@
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnMatchDTE">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>10</y>
+      <width>211</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Match Check-Table with DTE-Export</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -388,7 +413,7 @@
      <x>0</x>
      <y>0</y>
      <width>1032</width>
-     <height>19</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMen">
